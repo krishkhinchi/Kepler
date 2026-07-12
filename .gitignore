@@ -1,26 +1,87 @@
-# Logs
-logs
-*.log
+# ============================================
+# AssetFlow — Root .gitignore
+# ============================================
+
+# ──── OS / Editor ────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+.env
+.env.local
+.env.example
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# JetBrains (WebStorm, IntelliJ)
+.idea/
+*.iml
+*.iws
+
+# ──── Node.js ────────────────────────────────
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
-.env
-node_modules
-dist
-dist-ssr
-*.local
+.pnp
+.pnp.js
+.yarn/install-state.gz
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-.vercel
-.env*
+# ──── Backend — Express / Prisma / TypeScript ─
+backend/dist/
+backend/build/
+backend/node_modules/
+backend/.env
+backend/.env.local
+backend/.env.*.local
+backend/prisma/dev.db
+backend/prisma/dev.db-journal
+backend/prisma/*.db
+backend/prisma/*.db-journal
+backend/prisma/*.db-shm
+backend/prisma/*.db-wal
+
+# ──── Frontend — Next.js ─────────────────────
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+frontend/next-env.d.ts
+frontend/.vercel/
+frontend/tsconfig.tsbuildinfo
+
+# ──── Logs ───────────────────────────────────
+logs/
+*.log
+*.log.*
+
+# ──── Build artifacts ────────────────────────
+dist/
+build/
+out/
+*.tsbuildinfo
+*.js.map
+
+# ──── Testing ────────────────────────────────
+coverage/
+.nyc_output/
+*.lcov
+
+# ──── Misc ───────────────────────────────────
+*.pem
+*.key
+*.cert
+*.p12
+.cache/
+.temp/
+.tmp/

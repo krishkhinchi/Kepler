@@ -1,0 +1,40 @@
+# ============================================
+# AssetFlow Backend — .gitignore
+# ============================================
+
+# ──── Environment ────────────────────────────
+.env
+.env.example
+.env.local
+.env.development
+.env.production
+.env.*.local
+
+# ──── Node.js ────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ──── TypeScript Build Output ────────────────
+dist/
+build/
+*.js.map
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# ──── Prisma ─────────────────────────────────
+# Keep schema.prisma and migrations tracked
+# Ignore the SQLite database files (runtime data)
+prisma/*.db
+prisma/*.db-journal
+prisma/*.db-shm
+prisma/*.db-wal
+
+# ──── Logs ───────────────────────────────────
+logs/
+*.log
+
+# ──── OS ─────────────────────────────────────
+.DS_Store
+Thumbs.db
