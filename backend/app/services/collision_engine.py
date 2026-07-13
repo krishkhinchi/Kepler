@@ -34,14 +34,25 @@ class CollisionEngine:
         predictions = []
         now = datetime.datetime.utcnow()
 
-        for i in range(len(objects)):
-            for j in range(i + 1, len(objects)):
-                obj_a = objects[i]
-                obj_b = objects[j]
-                try:
-                    r_a, v_a = orbit_engine.propagate_state(obj_a.tle_line1, obj_a.tle_line2, now)
-                    r_b, v_b = orbit_engine.propagate_state(obj_b.tle_line1, obj_b.tle_line2, now)
+        # Batch process / memoize states to prevent redundant O(N^2) propagation calls
+        propagated_states = []
+        for obj in objects:
+            try:
+                r, v = orbit_engine.propagate_state(obj.tle_line1, obj.tle_line2, now)
+                propagated_states.append((obj, r, v))
+            except Exception as e:
+                logger.warning(f"Failed to propagate state for {obj.catalog_number}: {e}")
+                propagated_states.append((obj, None, None))
 
+        for i in range(len(propagated_states)):
+            obj_a, r_a, v_a = propagated_states[i]
+            if r_a is None:
+                continue
+            for j in range(i + 1, len(propagated_states)):
+                obj_b, r_b, v_b = propagated_states[j]
+                if r_b is None:
+                    continue
+                try:
                     distance_km = orbit_engine.calculate_distance(r_a, r_b)
 
                     if distance_km < 15.0:
