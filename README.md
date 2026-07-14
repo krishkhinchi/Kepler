@@ -458,6 +458,55 @@ If you find Kepler useful:
 
 🤝 Contribute code
 
+# 🏷️ Automatic Labeling System
+
+Kepler uses an automated labeling system powered by GitHub Actions to triage and organize issues and pull requests automatically. This simplifies contribution tracking, prioritizes maintenance work, and streamlines reviews.
+
+## How it Works
+
+The workflow (`.github/workflows/auto-labeler.yml`) triggers on various GitHub events and applies rules defined in the configuration file [.github/labeler-config.js](.github/labeler-config.js).
+
+### 1. Issues
+- **Assignment Tracking:** Automatically adds the `assigned` label when an issue is assigned to a contributor. When unassigned, the label is removed *only* if no assignees remain, preventing race conditions.
+- **Form Parsing:** Automatically extracts values from issue form dropdown fields:
+  - **Priority:** Maps selection to `priority:low`, `priority:medium`, `priority:high`, or `priority:critical`.
+  - **Platform:** Maps selection to `website`, `frontend`, `backend`, `api`, or `mobile` (including their respective `type:*` prefixes).
+  - **Difficulty:** Maps selection to `level:beginner`, `level:intermediate`, `level:advanced`, and assigns appropriate initial `size:*` labels (e.g. `size:S` for beginner, `size:M` for intermediate).
+- **Keyword Matching:** Scans the title and body for key terms to apply labels like `bug`, `documentation`, `enhancement`, `AI`, `database`, `GitHub Actions`, etc.
+
+### 2. Pull Requests
+- **Scope Detection:** Scans modified files to automatically apply scope labels:
+  - Changes in `frontend/**` -> `frontend`
+  - Changes in `backend/**` -> `backend`
+  - Changes in `.github/workflows/**` -> `github-actions`
+  - Changes in `tests/**` -> `testing`
+  - Docker changes -> `docker`
+  - Database-related files -> `database`
+- **Documentation-Only Changes:** If a pull request modifies *only* documentation paths (e.g., `docs/**`, `README.md`, `*.md`), it will receive the `documentation` label, and other code/scope labels will be bypassed.
+- **PR Size Calculation:** Measures the total lines changed (additions + deletions) and applies a size label:
+  - `size:XS` (≤ 10 lines)
+  - `size:S` (≤ 50 lines)
+  - `size:M` (≤ 200 lines)
+  - `size:L` (≤ 500 lines)
+  - `size/XL` (> 500 lines)
+- **Keyword Matching:** Scans PR title and description for keywords.
+
+## How to Configure Rules
+
+All labeling configurations are centralized in [.github/labeler-config.js](.github/labeler-config.js). 
+
+To update or add a new label:
+1. Open `.github/labeler-config.js`.
+2. Add the label metadata (name, color, description) under the `labels` object (the workflow will automatically create this label in the repository if it doesn't already exist!).
+3. Add/edit rules:
+   - For issues, add patterns under `issueRules.keywords` or map a new form option under `issueRules.formMappings`.
+   - For pull requests, add file glob paths under `prRules.filePatterns` or modify keywords under `prRules.keywords`.
+
+## Troubleshooting
+
+- **Label not added:** Check the GitHub Actions logs for `Automatic Labeler`. It prints detailed information on which rules matched, which labels already existed, and which labels were added.
+- **Fork security:** The workflow runs under `pull_request_target` to securely label pull requests from external forks. It checks out the trusted base branch to prevent execution of untrusted code.
+
 ---
 
 # 📄 License
