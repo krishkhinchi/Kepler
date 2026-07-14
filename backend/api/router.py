@@ -14,4 +14,4 @@ api_router.include_router(weather.router,    prefix="/weather",    tags=["Space 
 
 @api_router.get("/health", tags=["Health"])
 def api_health():
-    return {"success": True, "status": "healthy", "service": "KAPLER AI"}
+    return {"success": True, "status": "healthy", "service": "KEPLER AI"}

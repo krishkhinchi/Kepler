@@ -15,7 +15,7 @@ export const MainLayout: React.FC = () => {
   const location = useLocation();
   const [utcTime, setUtcTime] = useState<string>('00:00:00 UTC');
 
-  
+
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -41,7 +41,7 @@ export const MainLayout: React.FC = () => {
     { name: 'Settings', path: '/settings', icon: 'settings' }
   ];
 
-  
+
   const [activeDrawerTab, setActiveDrawerTab] = useState<'STREAM' | 'STATUS' | 'LOGS'>('STREAM');
   const [assistantInput, setAssistantInput] = useState('');
   const [assistantLogs, setAssistantLogs] = useState<Array<{ time: string; msg: string; type: string }>>([
@@ -69,27 +69,26 @@ export const MainLayout: React.FC = () => {
 
       {/* Main Container */}
       <div className="flex w-full h-full">
-        
+
         {/* Left Navigation Sidebar */}
-        <aside 
-          className={`flex flex-col h-full bg-bg-deep-space border-r border-border-panel transition-all duration-300 z-40 ${
-            sidebarCollapsed ? 'w-20' : 'w-64'
-          }`}
+        <aside
+          className={`flex flex-col h-full bg-bg-deep-space border-r border-border-panel transition-all duration-300 z-40 ${sidebarCollapsed ? 'w-20' : 'w-64'
+            }`}
         >
           {/* Logo & Header */}
           <div className="px-6 py-5 flex items-center justify-between">
             <div className={`${sidebarCollapsed ? 'hidden' : 'block'}`}>
               <h1 className="font-display-lg text-headline-lg font-bold tracking-tighter text-primary-container drop-shadow-[0_0_8px_rgba(0,229,255,0.6)]">
-                KAPLER
+                KEPLER
               </h1>
               <p className="font-label-caps text-label-caps text-primary-fixed-dim opacity-70 mt-1">
                 AI STRATEGIC COMMAND
               </p>
             </div>
-            
+
             {/* Collapse toggle */}
-            <button 
-              onClick={toggleSidebar} 
+            <button
+              onClick={toggleSidebar}
               className="p-1.5 rounded border border-border-panel hover:bg-surface-variant/50 transition-colors text-primary-container"
             >
               <MaterialIcon name={sidebarCollapsed ? 'chevron_right' : 'chevron_left'} className="text-sm" />
@@ -103,18 +102,16 @@ export const MainLayout: React.FC = () => {
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center px-3 py-3 transition-all duration-200 group border-r-2 ${
-                    isActive
-                      ? 'text-primary-container bg-primary-fixed-dim/10 border-primary-container'
-                      : 'text-on-surface-variant hover:text-primary hover:bg-surface-variant/40 border-transparent'
+                  `flex items-center px-3 py-3 transition-all duration-200 group border-r-2 ${isActive
+                    ? 'text-primary-container bg-primary-fixed-dim/10 border-primary-container'
+                    : 'text-on-surface-variant hover:text-primary hover:bg-surface-variant/40 border-transparent'
                   }`
                 }
               >
-                <MaterialIcon 
-                  name={item.icon} 
-                  className={`mr-4 transition-all ${
-                    location.pathname === item.path ? 'text-primary-container drop-shadow-[0_0_8px_rgba(0,229,255,0.6)]' : 'text-on-surface-variant group-hover:text-primary'
-                  }`} 
+                <MaterialIcon
+                  name={item.icon}
+                  className={`mr-4 transition-all ${location.pathname === item.path ? 'text-primary-container drop-shadow-[0_0_8px_rgba(0,229,255,0.6)]' : 'text-on-surface-variant group-hover:text-primary'
+                    }`}
                 />
                 {!sidebarCollapsed && (
                   <span className="font-technical-data text-technical-data font-medium transition-opacity duration-300">
@@ -143,16 +140,16 @@ export const MainLayout: React.FC = () => {
 
         {/* Center / Right Content Panel */}
         <div className="flex-1 flex flex-col h-full min-w-0 relative">
-          
+
           {/* Top Command Bar */}
           <header className="h-12 bg-bg-deep-space/95 border-b border-border-panel flex justify-between items-center px-6 w-full sticky top-0 z-30">
             {/* Command Search */}
             <div className="flex items-center gap-4">
               <div className="relative flex items-center">
                 <MaterialIcon name="search" className="absolute left-2 text-primary/50 text-sm" />
-                <input 
-                  type="text" 
-                  placeholder="OBJECT ID / TLE SEARCH" 
+                <input
+                  type="text"
+                  placeholder="OBJECT ID / TLE SEARCH"
                   className="bg-surface-container-low border-b border-primary/30 text-primary font-technical-data text-[12px] pl-8 pr-16 py-1 focus:outline-none focus:border-primary-container transition-all w-64 placeholder:text-primary/30"
                 />
                 <span className="absolute right-2 text-[9px] text-primary/40 font-mono">CMD+K</span>
@@ -171,7 +168,7 @@ export const MainLayout: React.FC = () => {
                 {utcTime}
               </div>
               <div className="flex items-center gap-4">
-                <button 
+                <button
                   onClick={toggleRightDrawer}
                   className={`transition-colors cursor-pointer ${rightDrawerOpen ? 'text-primary-container drop-shadow-[0_0_8px_rgba(0,229,255,0.6)]' : 'text-primary hover:text-primary-fixed'}`}
                 >
@@ -196,7 +193,7 @@ export const MainLayout: React.FC = () => {
             {/* Right Drawer (AI Assistant) */}
             <AnimatePresence>
               {rightDrawerOpen && (
-                <motion.aside 
+                <motion.aside
                   initial={{ x: 320, opacity: 0.8 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: 320, opacity: 0.8 }}
@@ -213,8 +210,8 @@ export const MainLayout: React.FC = () => {
                         LIVE TELEMETRY & FEEDBACK
                       </p>
                     </div>
-                    <button 
-                      onClick={toggleRightDrawer} 
+                    <button
+                      onClick={toggleRightDrawer}
                       className="text-on-surface-variant hover:text-primary transition-colors"
                     >
                       <MaterialIcon name="close" />
@@ -227,14 +224,13 @@ export const MainLayout: React.FC = () => {
                       <button
                         key={tab}
                         onClick={() => setActiveDrawerTab(tab)}
-                        className={`flex-1 py-3 text-[10px] font-label-caps font-bold transition-all flex flex-col items-center gap-1 border-b ${
-                          activeDrawerTab === tab
+                        className={`flex-1 py-3 text-[10px] font-label-caps font-bold transition-all flex flex-col items-center gap-1 border-b ${activeDrawerTab === tab
                             ? 'text-primary-container border-primary-container'
                             : 'text-on-surface-variant hover:bg-surface-container-high/40 border-transparent'
-                        }`}
+                          }`}
                       >
-                        <MaterialIcon 
-                          name={tab === 'STREAM' ? 'psychology' : tab === 'STATUS' ? 'memory' : 'list_alt'} 
+                        <MaterialIcon
+                          name={tab === 'STREAM' ? 'psychology' : tab === 'STATUS' ? 'memory' : 'list_alt'}
                           className="text-sm"
                         />
                         <span>{tab}</span>
@@ -324,11 +320,11 @@ export const MainLayout: React.FC = () => {
                   {/* Chat Input */}
                   <form onSubmit={handleSendQuery} className="p-4 bg-bg-deep-space/85 border-t border-border-panel">
                     <div className="relative">
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={assistantInput}
                         onChange={(e) => setAssistantInput(e.target.value)}
-                        placeholder="ASK AI COMMAND..." 
+                        placeholder="ASK AI COMMAND..."
                         className="w-full bg-surface-container-low border border-border-panel text-[11px] font-technical-data px-3 py-3 focus:outline-none focus:border-primary-container transition-all pr-10"
                       />
                       <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 text-primary-container hover:text-primary transition-colors">

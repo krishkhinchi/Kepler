@@ -20,3 +20,14 @@
 ## Breaking Changes
 
 <!-- Does this PR introduce a breaking change? Please describe it -->
+
+---
+
+## ECSoC26 Submission
+
+> **ECSoC26 contributors only** — select your difficulty level by checking exactly **one** box below.
+> Leaving all boxes unchecked, or checking more than one, will cause the automation to fail.
+
+- [ ] `ECSoC26-L1` – Beginner
+- [ ] `ECSoC26-L2` – Intermediate
+- [ ] `ECSoC26-L3` – Advanced

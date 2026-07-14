@@ -1,0 +1,69 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# ECSoC26 Automatic PR Labeling Workflow
+#
+# Purpose:
+#   Automatically applies the `ECSoC26` label and exactly one difficulty label
+#   (`ECSoC26-L1`, `ECSoC26-L2`, or `ECSoC26-L3`) to every ECSoC26 Pull Request.
+#
+# Trigger events:
+#   opened        – first time a contributor submits the PR
+#   reopened      – PR re-opened after being closed
+#   edited        – contributor edits the PR title or body (e.g. corrects their
+#                   difficulty selection)
+#   synchronize   – new commits are pushed to the PR branch
+#   ready_for_review – PR converted from draft to ready
+#
+# Security:
+#   Uses `pull_request_target` so that the workflow always runs in the context
+#   of the BASE branch (trusted code) even for forks.  The checkout step
+#   explicitly pins to the default branch to ensure no fork code is executed.
+#
+# Permissions:
+#   Least-privilege – only `pull-requests: write` and `contents: read` are
+#   requested.  `issues: write` is added because the Labels REST API is scoped
+#   under the Issues API surface.
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: ECSoC26 Auto Labeler
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - edited
+      - synchronize
+      - ready_for_review
+
+# Minimal permissions required to read repo content and write PR labels
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write  # Required by the GitHub Labels REST API
+
+jobs:
+  ecsoc26-label:
+    name: Apply ECSoC26 Labels
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── Step 1: Checkout the BASE branch ────────────────────────────────────
+      # Always check out the repository's default branch so that we execute
+      # only trusted, reviewed code – never code from a fork's PR branch.
+      - name: Checkout Base Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      # ── Step 2: Detect difficulty and apply labels ───────────────────────────
+      # Loads and runs the ECSoC26-specific labeler helper script via
+      # actions/github-script, which already provides the `github`, `context`,
+      # and `core` objects – no extra setup needed.
+      - name: Apply ECSoC26 Labels
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // Load the ECSoC26 labeler helper from the checked-out base branch
+            const labeler = require('./.github/scripts/ecsoc26-labeler.js');
+            await labeler({ github, context, core });

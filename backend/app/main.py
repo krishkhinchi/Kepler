@@ -53,7 +53,7 @@ app.include_router(api_router, prefix=settings.API_V1_STR)
 
 @app.get("/", tags=["Health"])
 def root():
-    return {"success": True, "message": "KAPLER AI backend is running 🚀"}
+    return {"success": True, "message": "KEPLER AI backend is running 🚀"}
 
 
 @app.get("/health", tags=["Health"])

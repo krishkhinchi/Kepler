@@ -47,7 +47,10 @@ module.exports = {
     "website": { color: "0052cc", description: "Website platform" },
     "mobile": { color: "1d76db", description: "Mobile platform" },
     "api": { color: "0075ca", description: "API platform" },
-    "ECSoC26": { color: "0052cc", description: "Event specific label for ECSoC26" },
+    "ECSoC26": { color: "0052cc", description: "ECSoC26 event submission" },
+    "ECSoC26-L1": { color: "0e8a16", description: "ECSoC26 – Level 1 (Beginner)" },
+    "ECSoC26-L2": { color: "fbca04", description: "ECSoC26 – Level 2 (Intermediate)" },
+    "ECSoC26-L3": { color: "d93f0b", description: "ECSoC26 – Level 3 (Advanced)" },
     "mentor:Krish-Khinchi": { color: "1d76db", description: "Assigned mentor" },
     "pr-valid": { color: "0e8a16", description: "Pull request is valid" },
     "issue-valid": { color: "0e8a16", description: "Issue is valid" }

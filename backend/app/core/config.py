@@ -4,7 +4,7 @@ import os
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "KAPLER AI"
+    PROJECT_NAME: str = "KEPLER AI"
     API_V1_STR: str = "/api/v1"
 
     
