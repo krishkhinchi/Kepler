@@ -1,5 +1,5 @@
 <div align="center">
-<h1>🚀 KEPLER</h1>
+<h1>KEPLER 🚀</h1>
 
 ### An AI-Powered Autonomous Space Traffic Management Platform
 </div>
@@ -10,6 +10,20 @@
   <img src="https://img.shields.io/badge/AI-Powered-green?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Status-Active%20Development-red?style=for-the-badge" />
 </p>
+
+---
+
+<!-- CONTRIBUTORS_START -->
+<div align="center">
+<h1>Contributors 👥</h1>
+
+<a href="https://github.com/krishkhinchi"><img src="https://github.com/krishkhinchi.png" width="50px" style="border-radius:50%;margin:5px;" alt="krishkhinchi" /></a>
+<a href="https://github.com/Diwakar-odds"><img src="https://github.com/Diwakar-odds.png" width="50px" style="border-radius:50%;margin:5px;" alt="Diwakar-odds" /></a>
+<a href="https://github.com/KrupaShah20"><img src="https://github.com/KrupaShah20.png" width="50px" style="border-radius:50%;margin:5px;" alt="KrupaShah20" /></a>
+<a href="https://github.com/Priteshsolanki12"><img src="https://github.com/Priteshsolanki12.png" width="50px" style="border-radius:50%;margin:5px;" alt="Priteshsolanki12" /></a>
+<a href="https://github.com/deepmhatre13"><img src="https://github.com/deepmhatre13.png" width="50px" style="border-radius:50%;margin:5px;" alt="deepmhatre13" /></a>
+</div>
+<!-- CONTRIBUTORS_END -->
 
 ---
 
