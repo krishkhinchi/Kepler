@@ -1,3 +1,5 @@
+from debug_log import configure_debug_logging, debug
+configure_debug_logging()
 import uvicorn
 import json
 import logging
