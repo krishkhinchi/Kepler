@@ -340,12 +340,13 @@ function WhyKepler() {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%" },
       });
       gsap.from(".why-row", {
-        x: -40,
+        x: reduce ? 0 : window.matchMedia("(min-width: 640px)").matches ? -40 : 0,
+        y: window.matchMedia("(min-width: 640px)").matches ? 0 : 28,
         opacity: 0,
         duration: 0.75,
         stagger: 0.14,
         ease: "power3.out",
-        scrollTrigger: { trigger: ".why-rows", start: "top 80%" },
+        scrollTrigger: { trigger: ".why-rows", start: "top 85%" },
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -355,17 +356,17 @@ function WhyKepler() {
     <section
       id="why"
       ref={sectionRef}
-      className="py-28 px-6 section-rule bg-[#0C1220]"
+      className="py-16 sm:py-24 md:py-28 px-5 sm:px-6 section-rule bg-[#0C1220] overflow-x-clip"
     >
       <div className="max-w-[1180px] mx-auto">
-        <div className="why-head mb-16 max-w-[640px]">
-          <div className="font-technical-data text-xs text-[#4FE0C8] tracking-[0.18em] mb-4">
+        <div className="why-head mb-10 sm:mb-14 md:mb-16 max-w-[640px]">
+          <div className="font-technical-data text-[11px] sm:text-xs text-[#4FE0C8] tracking-[0.18em] mb-3 sm:mb-4">
             03 · WHY KEPLER EXISTS
           </div>
-          <h2 className="font-necosmic font-semibold text-4xl sm:text-5xl text-[#E7EBF3] m-0 mb-5 leading-[1.05]">
+          <h2 className="font-necosmic font-semibold text-3xl sm:text-4xl md:text-5xl text-[#E7EBF3] m-0 mb-4 sm:mb-5 leading-[1.05]">
             Orbit is no longer empty.
           </h2>
-          <p className="font-body-ui text-[#8892A6] leading-relaxed m-0 text-[1.05rem]">
+          <p className="font-body-ui text-[#8892A6] leading-relaxed m-0 text-[0.98rem] sm:text-[1.05rem]">
             Earth's orbital environment is one of the fastest-growing operational
             challenges in aerospace. Kepler was built because traffic management
             for space still looks like a spreadsheet-era problem.
@@ -376,15 +377,17 @@ function WhyKepler() {
           {reasons.map((r) => (
             <motion.div
               key={r.label}
-              className="why-row group grid grid-cols-[64px_1fr] sm:grid-cols-[88px_200px_1fr] gap-4 sm:gap-8 items-baseline py-8 border-t border-[#1B2436]/70 last:border-b last:border-[#1B2436]/70"
-              whileHover={reduce ? undefined : { x: 8 }}
+              className="why-row group grid grid-cols-[auto_1fr] sm:grid-cols-[88px_minmax(9rem,12.5rem)_1fr] gap-x-3 gap-y-2 sm:gap-x-8 sm:gap-y-1 items-start sm:items-baseline py-6 sm:py-8 border-t border-[#1B2436]/70 last:border-b last:border-[#1B2436]/70"
+              whileHover={reduce ? undefined : { x: 6 }}
               transition={{ type: "spring", stiffness: 320, damping: 28 }}
             >
-              <span className="font-technical-data text-sm text-[#4FE0C8]">{r.n}</span>
-              <h3 className="font-necosmic font-semibold text-2xl text-[#E7EBF3] m-0 group-hover:text-[#4FE0C8] transition-colors duration-200">
+              <span className="font-technical-data text-xs sm:text-sm text-[#4FE0C8] pt-1 sm:pt-0">
+                {r.n}
+              </span>
+              <h3 className="font-necosmic font-semibold text-xl sm:text-2xl text-[#E7EBF3] m-0 group-hover:text-[#4FE0C8] transition-colors duration-200">
                 {r.label}
               </h3>
-              <p className="font-body-ui text-[#8892A6] leading-relaxed m-0 text-[0.98rem] max-w-[48ch] sm:col-start-3">
+              <p className="col-span-2 sm:col-span-1 sm:col-start-3 font-body-ui text-[#8892A6] leading-relaxed m-0 text-sm sm:text-[0.98rem] max-w-none sm:max-w-[48ch]">
                 {r.body}
               </p>
             </motion.div>
