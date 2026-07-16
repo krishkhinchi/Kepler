@@ -37,14 +37,14 @@ export const MainLayout: React.FC = () => {
   }, [location.pathname]);
 
   const navItems = [
-    { name: 'Dashboard', path: '/', icon: 'dashboard' },
-    { name: 'Space Traffic', path: '/space-traffic', icon: 'language' },
-    { name: 'Satellites', path: '/satellites', icon: 'satellite_alt' },
-    { name: 'Debris', path: '/debris', icon: 'delete_sweep' },
-    { name: 'Collision Center', path: '/collision-center', icon: 'warning' },
-    { name: 'AI Agents', path: '/ai-agents', icon: 'smart_toy' },
-    { name: 'Mission Planner', path: '/mission-planner', icon: 'event_note' },
-    { name: 'Settings', path: '/settings', icon: 'settings' }
+    { name: 'Dashboard', path: '/dashboard', icon: 'dashboard' },
+    { name: 'Space Traffic', path: '/dashboard/space-traffic', icon: 'language' },
+    { name: 'Satellites', path: '/dashboard/satellites', icon: 'satellite_alt' },
+    { name: 'Debris', path: '/dashboard/debris', icon: 'delete_sweep' },
+    { name: 'Collision Center', path: '/dashboard/collision-center', icon: 'warning' },
+    { name: 'AI Agents', path: '/dashboard/ai-agents', icon: 'smart_toy' },
+    { name: 'Mission Planner', path: '/dashboard/mission-planner', icon: 'event_note' },
+    { name: 'Settings', path: '/dashboard/settings', icon: 'settings' }
   ];
 
 
