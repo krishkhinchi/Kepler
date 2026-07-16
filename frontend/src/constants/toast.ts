@@ -1,21 +1,12 @@
-// import type { ToasterProps } from 'react-hot-toast';
+import type { ToasterProps } from "sonner";
 
-// export const toastConfig: ToasterProps[] = [
-//   {
-//     position: "top-right",
-//     containerStyle: { 
-//       top: '4em', 
-//       right: "16px", 
-//       left: "16px" 
-//     },
-//     toastOptions: { 
-//       className: " !glass-panel !bg-surface-container/80 !text-white !rounded-none text-primary-container !border-1 border-border-panel",
-//       success: {
-//         className: " !glass-panel !bg-surface-container/60 !text-status-success !rounded-none text-primary-container !border-1 !border-status-success",
-//       },
-//       error: {
-//         className: " !glass-panel !bg-surface-container/80 !text-status-emergency !rounded-none text-primary-container !border-1 !border-status-emergency",
-//       },
-//     }
-//   }
-// ];
+export const toastOptions: ToasterProps["toastOptions"] = {
+  className:
+    "!glass-panel !bg-surface-container/90 !rounded-md !text-md !font-bold !text-primary-container !border-1",
+  classNames: {
+    toast: "!text-primary-container !border-border-panel",
+    success: "!text-status-success !border-status-success",
+    warning: "!text-status-warning !border-status-warning",
+    error: "!text-status-emergency !border-status-emergency",
+  },
+};

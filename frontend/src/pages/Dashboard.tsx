@@ -161,7 +161,6 @@ export const Dashboard: React.FC = () => {
         }
       </section>
       {/* Bottom Timeline & Reasoning Stream */}
-        <button onClick={() => toast("This is an info toast!")}>TOAST</button>
       <section className="px-3 md:px-6 pb-6 grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 flex-1 min-h-0">
 
         {/* Left (2/3): Live Collision Timeline */}
