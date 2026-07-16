@@ -2,31 +2,6 @@ import Hero from "@/components/Hero";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-/**
- * Kepler — Landing Page
- * -----------------------------------------------------------------------
- * Design tokens
- *   bg          #060A14  deep orbital black
- *   bg-panel    #0C1220  raised panel / nav / footer
- *   line        #1B2436  hairline borders
- *   text        #E7EBF3  primary text
- *   text-dim    #8892A6  secondary text
- *   accent      #4FE0C8  "tracked" telemetry teal (signature color)
- *   warn        #FFB020  "conflict" amber (used sparingly, for CTA + alerts)
- *
- * Type
- *   display: "Space Grotesk" (headlines — geometric, technical, a little cold)
- *   body:    "Inter" (paragraphs, nav, footer)
- *   mono:    "JetBrains Mono" (telemetry labels, coordinates, small data)
- *
- * Signature element
- *   A live orbital field in the hero: thin elliptical paths with small
- *   telemetry dots drifting along them, each carrying a coordinate-style
- *   label. It's the literal subject — space traffic — rendered as the
- *   backdrop rather than an abstract gradient blob.
- * -----------------------------------------------------------------------
- */
-
 const FONT_LINK_ID = "kepler-landing-fonts";
 
 function useInjectFonts() {
@@ -156,7 +131,7 @@ function NavBar({ onLaunchDashboard }: NavBarProps) {
 
         <button
           onClick={onLaunchDashboard}
-          className="font-body-ui font-semibold bg-primary-container shadow-none transition-ui hover:shadow-[0_0_8px_rgba(0,229,255,1)] text-sm text-[#060A14] bg-[#4FE0C8] border-none rounded-md px-4 py-2 cursor-pointer transition-colors duration-150"
+          className="font-body-ui font-semibold bg-primary-container shadow-none transition-ui hover:shadow-[0_0_8px_rgba(0,229,255,1)] text-sm text-[#060A14] border-none rounded-md px-4 py-2 cursor-pointer"
         >
           Dashboard
         </button>

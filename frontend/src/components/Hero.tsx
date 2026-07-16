@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Particles } from "@/components/ui/particles";
@@ -27,16 +25,6 @@ export function Hero() {
   return (
     <section className="relative flex min-h-screen w-full items-center overflow-hidden bg-[radial-gradient(120%_90%_at_50%_10%,#0B111F_0%,#05070C_60%)] font-[Inter]">
       <Particles className="absolute inset-0" quantity={220} />
-
-      {/*
-        Globe + orbit cluster. Sized as one responsive square (h/w match at
-        every breakpoint) so the rings, which are percentage-sized against
-        this same box, scale together automatically — no separate ring
-        sizing needed per breakpoint.
-        Mobile: centered near the top, dimmed, so it reads as ambient
-        background behind the stacked text instead of competing with it.
-        sm+: moves to a right-anchored focal panel at full opacity.
-      */}
       <div
         className="absolute left-1/2 top-[32%] h-[240px] w-[240px] max-w-[85vw] -translate-x-1/2 -translate-y-1/2 opacity-40
                    sm:left-auto sm:right-[3%] sm:top-1/2 sm:h-[380px] sm:w-[380px] sm:translate-x-0 sm:-translate-y-1/2 sm:opacity-70
@@ -44,7 +32,7 @@ export function Hero() {
       >
         <OrbitSatellites />
         <div className="absolute inset-0 flex items-center justify-center">
-          <Globe className="h-max-[480px] h-max-[480px]" />
+          <Globe className="h-max-[480px] w-max-[480px]" />
         </div>
       </div>
 
