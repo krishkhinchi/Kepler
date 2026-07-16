@@ -110,16 +110,10 @@ function OrbitalField({ prefersReducedMotion }: OrbitalFieldProps) {
 
 interface NavBarProps {
   onLaunchDashboard: () => void;
+  scrolled: boolean;
 }
 
-function NavBar({ onLaunchDashboard }: NavBarProps) {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+function NavBar({ onLaunchDashboard, scrolled }: NavBarProps) {
 
   const links = [
     { label: "Product", href: "#product" },
@@ -379,6 +373,7 @@ export const LandingPage: React.FC = () => {
   useInjectFonts();
   const navigate = useNavigate();
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -388,13 +383,20 @@ export const LandingPage: React.FC = () => {
     return () => mediaQuery.removeEventListener("change", listener);
   }, []);
 
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    setScrolled(e.currentTarget.scrollTop > 12);
+  };
+
   const handleLaunch = () => {
     navigate("/dashboard");
   };
 
   return (
-    <div className="bg-[#060A14] h-screen overflow-y-auto overflow-x-hidden text-[#E7EBF3] select-none scroll-smooth">
-      <NavBar onLaunchDashboard={handleLaunch} />
+    <div
+      onScroll={handleScroll}
+      className="bg-[#060A14] h-screen overflow-y-auto overflow-x-hidden text-[#E7EBF3] select-none scroll-smooth"
+    >
+      <NavBar onLaunchDashboard={handleLaunch} scrolled={scrolled} />
       <Hero onLaunchDashboard={handleLaunch} prefersReducedMotion={prefersReducedMotion} />
       <HowItWorks />
       <Reliability />
