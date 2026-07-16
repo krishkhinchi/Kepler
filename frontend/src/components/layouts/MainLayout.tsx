@@ -127,6 +127,7 @@ export const MainLayout: React.FC = () => {
               <NavLink
                 key={item.path}
                 to={item.path}
+                end={item.path === '/dashboard'}
                 className={({ isActive }) =>
                   `flex items-center px-3 py-3 min-h-[44px] transition-all duration-200 group border-r-2 ${isActive
                     ? 'text-primary-container bg-primary-fixed-dim/10 border-primary-container'

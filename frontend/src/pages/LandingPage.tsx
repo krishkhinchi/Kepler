@@ -42,7 +42,11 @@ function useInjectFonts() {
 
 /* Orbital field */
 
-function OrbitalField() {
+interface OrbitalFieldProps {
+  prefersReducedMotion: boolean;
+}
+
+function OrbitalField({ prefersReducedMotion }: OrbitalFieldProps) {
   const orbits = [
     { rx: 260, ry: 90, rotate: -18, dur: 34, dot: "#4FE0C8", label: "SAT-2291" },
     { rx: 340, ry: 130, rotate: 8, dur: 46, dot: "#4FE0C8", label: "SAT-0417" },
@@ -73,14 +77,16 @@ function OrbitalField() {
               strokeWidth="1"
             />
             <g>
-              <animateTransform
-                attributeName="transform"
-                type="rotate"
-                from="0 0 0"
-                to="360 0 0"
-                dur={`${o.dur}s`}
-                repeatCount="indefinite"
-              />
+              {!prefersReducedMotion && (
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  from="0 0 0"
+                  to="360 0 0"
+                  dur={`${o.dur}s`}
+                  repeatCount="indefinite"
+                />
+              )}
               <circle cx={o.rx} cy="0" r="3.5" fill={o.dot} />
               <text
                 x={o.rx + 10}
@@ -162,15 +168,16 @@ function NavBar({ onLaunchDashboard }: NavBarProps) {
 
 interface HeroProps {
   onLaunchDashboard: () => void;
+  prefersReducedMotion: boolean;
 }
 
-function Hero({ onLaunchDashboard }: HeroProps) {
+function Hero({ onLaunchDashboard, prefersReducedMotion }: HeroProps) {
   return (
     <section
       id="product"
       className="relative min-h-[85vh] flex items-center justify-center px-6 py-20 overflow-hidden"
     >
-      <OrbitalField />
+      <OrbitalField prefersReducedMotion={prefersReducedMotion} />
 
       <div className="relative z-10 max-w-[720px] text-center flex flex-col items-center">
         <div className="inline-flex items-center font-technical-data text-xs text-[#4FE0C8] border border-[#1B2436] rounded-full px-3.5 py-1.5 mb-7 bg-[#060A14]">
@@ -322,10 +329,14 @@ function Footer() {
             <div className="font-body-ui text-xs text-[#4FE0C8] mb-3.5 font-semibold">
               PRODUCT
             </div>
-            {["Overview", "How it works", "Reliability"].map((t) => (
-              <div key={t} className="mb-2">
-                <a href="#" className="font-body-ui text-[13px] text-[#8892A6] hover:text-[#E7EBF3] no-underline transition-colors duration-150">
-                  {t}
+            {[
+              { label: "Overview", href: "#product" },
+              { label: "How it works", href: "#how-it-works" },
+              { label: "Reliability", href: "#reliability" }
+            ].map((link) => (
+              <div key={link.label} className="mb-2">
+                <a href={link.href} className="font-body-ui text-[13px] text-[#8892A6] hover:text-[#E7EBF3] no-underline transition-colors duration-150">
+                  {link.label}
                 </a>
               </div>
             ))}
@@ -334,11 +345,21 @@ function Footer() {
             <div className="font-body-ui text-xs text-[#4FE0C8] mb-3.5 font-semibold">
               COMPANY
             </div>
-            {["About", "Careers", "Contact"].map((t) => (
-              <div key={t} className="mb-2">
-                <a href="#" className="font-body-ui text-[13px] text-[#8892A6] hover:text-[#E7EBF3] no-underline transition-colors duration-150">
-                  {t}
-                </a>
+            {[
+              { label: "About", disabled: true },
+              { label: "Careers", disabled: true },
+              { label: "Contact", href: "#contact" }
+            ].map((link) => (
+              <div key={link.label} className="mb-2">
+                {link.disabled ? (
+                  <span className="font-body-ui text-[13px] text-[#8892A6]/50 cursor-default select-none">
+                    {link.label}
+                  </span>
+                ) : (
+                  <a href={link.href} className="font-body-ui text-[13px] text-[#8892A6] hover:text-[#E7EBF3] no-underline transition-colors duration-150">
+                    {link.label}
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -357,15 +378,24 @@ function Footer() {
 export const LandingPage: React.FC = () => {
   useInjectFonts();
   const navigate = useNavigate();
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+    const listener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener("change", listener);
+    return () => mediaQuery.removeEventListener("change", listener);
+  }, []);
 
   const handleLaunch = () => {
     navigate("/dashboard");
   };
 
   return (
-    <div className="bg-[#060A14] min-h-screen text-[#E7EBF3] overflow-x-hidden select-none">
+    <div className="bg-[#060A14] h-screen overflow-y-auto overflow-x-hidden text-[#E7EBF3] select-none scroll-smooth">
       <NavBar onLaunchDashboard={handleLaunch} />
-      <Hero onLaunchDashboard={handleLaunch} />
+      <Hero onLaunchDashboard={handleLaunch} prefersReducedMotion={prefersReducedMotion} />
       <HowItWorks />
       <Reliability />
       <Footer />
