@@ -2,7 +2,7 @@
 
 export const colors = {
   background: '#10141a',
-  bgDeepSpace: '#000000',
+  bgDeepSpace: '#0C1220',
   bgGraphite: '#05070a',
   surface: '#0d1117',
   borderPanel: '#1f2937',
