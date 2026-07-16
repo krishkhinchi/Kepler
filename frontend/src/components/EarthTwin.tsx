@@ -120,6 +120,9 @@ async function fetchCollisions(): Promise<CollisionRisk[]> {
   return json.data ?? [];
 }
 
+const LegendCardSkeleton = () => (
+  <div className="min-w-[200px] glass-panel p-4 animate-pulse bg-surface-container/40 h-48" />
+);
 
 export const EarthTwin: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -461,6 +464,8 @@ export const EarthTwin: React.FC = () => {
           </div>
 
           <div className="text-right space-y-1 animate-[slideDown_0.5s_ease-out] hidden sm:block">
+          {dataLoaded ? (
+            <>
             {objectCounts.collisions > 0 ? (
               <div className="bg-status-emergency/20 border border-status-emergency px-3 md:px-4 py-1 flex items-center gap-2 drop-shadow-[0_0_12px_rgba(255,59,48,0.4)]">
                 <MaterialIcon name="warning" className="text-status-emergency text-sm animate-pulse" />
@@ -476,15 +481,27 @@ export const EarthTwin: React.FC = () => {
                 </span>
               </div>
             )}
-            <p className="font-technical-data text-[9px] md:text-[10px] text-primary/70 hidden md:block">
+            </>
+          ) : (
+            <>
+            <div className="w-full h-8 bg-surface-container/80 animate-pulse" />
+            <div className="w-full h-4 bg-surface-container/80 animate-pulse" />
+            </>
+          ) }
+            <p className={`font-technical-data text-[9px] md:text-[10px] text-primary/70 hidden md:block transition-opacity duration-500 ${dataLoaded ? 'opacity-100' : 'opacity-0'}`}>
               WEATHER: {stats.weatherIndex} · DATA SOURCE: SPACE-TRACK / NASA DONKI
             </p>
+
           </div>
         </div>
 
         {/* Bottom Row */}
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-end justify-between animate-[slideUp_0.5s_ease-out]">
           <div className="flex gap-4 md:gap-8 flex-wrap">
+            {!dataLoaded && !useFallback ? (
+              <div className="min-w-[250px] p-4 animate-pulse bg-surface-container/80 h-12" />
+            ) : (
+              <>
             <div className="space-y-0.5">
               <p className="font-label-caps text-[9px] md:text-[10px] text-primary/70 uppercase">Objects Tracked</p>
               <p className="font-headline-lg text-primary text-xl md:text-3xl font-bold font-technical-data drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
@@ -503,6 +520,9 @@ export const EarthTwin: React.FC = () => {
                 {objectCounts.collisions}
               </p>
             </div>
+            </>
+            )
+          }
           </div>
 
           {/* Controls */}
@@ -538,6 +558,7 @@ export const EarthTwin: React.FC = () => {
       {/* ── Legend Panel ───────────────────────────────────────── */}
       {showLegend && (
         <div className="absolute bottom-16 md:bottom-24 left-3 md:left-6 z-20 pointer-events-auto animate-[slideUp_0.3s_ease-out]">
+          {dataLoaded ? (
           <div className="bg-bg-deep-space/90 backdrop-blur-xl border border-border-panel p-4 min-w-[200px] shadow-[0_0_30px_rgba(0,0,0,0.6)]">
             <div className="flex justify-between items-center mb-3">
               <span className="font-label-caps text-[10px] text-primary-container font-bold tracking-widest">ORBITAL LEGEND</span>
@@ -568,19 +589,9 @@ export const EarthTwin: React.FC = () => {
               All positions from real orbital elements
             </div>
           </div>
+          ) : (<LegendCardSkeleton />) }
         </div>
       )}
-
-      {/* ── Loading Indicator ─────────────────────────────────── */}
-      {!useFallback && !dataLoaded && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none">
-          <div className="bg-bg-deep-space/90 backdrop-blur-xl border border-primary-container/50 px-4 py-2 flex items-center gap-3 rounded-full shadow-[0_0_20px_rgba(0,229,255,0.2)]">
-            <MaterialIcon name="sync" className="text-primary-container text-sm animate-spin" />
-            <span className="font-label-caps text-[10px] text-primary-container font-bold tracking-widest">LOADING ORBITAL DATA...</span>
-          </div>
-        </div>
-      )}
-
       {/* ── Inline Styles for Animations ──────────────────────── */}
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
