@@ -22,6 +22,9 @@ class FakeCollection:
     def delete_one(self, filter_dict):
         pass
 
+    def find(self, filter_dict=None, projection=None):
+        return self.docs
+
 
 class FakeDb:
     def __init__(self):
@@ -135,3 +138,23 @@ def test_seed_database_execution(mock_session_local, mock_mongo_client):
     
     # Conjunctions seeded: min(5, len(satellites), len(debris)) = min(5, 10, 5) = 5
     assert len(fake_db["conjunctions"].docs) == 5
+
+
+@patch("scripts.seed_db.get_mongo_client")
+@patch("scripts.seed_db.SessionLocal")
+def test_seed_database_no_clear(mock_session_local, mock_mongo_client):
+    fake_db = FakeDb()
+    mock_mongo_client.return_value = fake_db.client
+    
+    # Pre-populate some existing IDs in the collection
+    fake_db["satellites"].docs = [{"noradId": "12345"}, {"noradId": "67890"}]
+    fake_db["debris"].docs = [{"noradId": "11111"}]
+    
+    fake_session = FakeSession(fake_db)
+    mock_session_local.return_value = fake_session
+    
+    # Run seed script without clear
+    seed_database(count=5, clear=False)
+    
+    # Assert it completed without crash and new unique IDs are generated
+    assert len(fake_db["satellites"].docs) > 2
