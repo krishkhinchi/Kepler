@@ -1,9 +1,10 @@
 /**
  * Centralized API Client — Kepler AI
- * All requests go to the FastAPI backend at http://localhost:8000/api/v1
+ * In production, requests go to /api/v1 (same-origin, proxied by Vercel).
+ * In local development, set VITE_API_URL=http://localhost:8000/api/v1 in .env.local
  */
 
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8000/api/v1';
+const API_BASE = import.meta.env.VITE_API_URL ?? '/api/v1';
 
 export interface APIResponse<T> {
   success: boolean;
