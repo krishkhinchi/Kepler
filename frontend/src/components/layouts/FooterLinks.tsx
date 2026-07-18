@@ -32,6 +32,13 @@ export default function FooterLinks() {
         aria-hidden
         className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
       >
+        <img
+          src="/Logo.svg"
+          alt=""
+          width={20}
+          height={20}
+          className="h-5 w-5 object-contain"
+        />
         <h1 className="select-none text-[180px] md:text-[260px] lg:text-[340px] font-black tracking-[0.2em] text-white/[0.03]">
           KEPLER
         </h1>
@@ -44,7 +51,7 @@ export default function FooterLinks() {
           {/* Brand */}
 
           <div className="max-w-md">
-
+            
             <div className="flex items-center gap-4">
 
               <img
@@ -55,7 +62,7 @@ export default function FooterLinks() {
 
               <div>
 
-                <h2 className="text-3xl font-bold tracking-wide text-white">
+                <h2 className="font-necosmic text-[26px] text-white tracking-wide font-medium">
                   KEPLER
                 </h2>
 
@@ -67,7 +74,7 @@ export default function FooterLinks() {
 
             </div>
 
-            <p className="mt-8 text-slate-400 leading-8">
+            <p className="mt-7 text-slate-400 leading-9">
               Kepler delivers intelligent orbital monitoring,
               autonomous collision avoidance, mission planning,
               and real-time traffic management for the next
