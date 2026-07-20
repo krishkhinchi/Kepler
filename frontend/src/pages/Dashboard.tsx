@@ -3,13 +3,11 @@ import { motion } from 'framer-motion';
 import { EarthTwin } from '@/components/EarthTwin';
 import { MaterialIcon } from '@/components/MaterialIcon';
 import { MagicCard } from '@/components/ui/magic-card';
-import { Particles } from '@/components/ui/particles';
 import { useSpaceSummary } from '@/hooks/useApi';
 import { useCollisions } from '@/hooks/useApi';
 import { useAgentRuns } from '@/hooks/useApi';
 import { useWeatherStatus } from '@/hooks/useApi';
 import type { Collision, AgentDecision } from '@/services/api';
-import { toast } from 'sonner';
 
 const riskColor = (level: string) => {
   switch (level) {

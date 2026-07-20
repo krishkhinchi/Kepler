@@ -184,8 +184,6 @@ function DevelopersHero() {
 }
 
 function ApiSection() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative py-24 px-6 section-rule bg-[#050811]">
       <Particles className="absolute inset-0" quantity={80} color="#00e5ff" />
@@ -247,8 +245,6 @@ function ApiSection() {
 }
 
 function SdksSection() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative py-24 px-6 section-rule bg-[#050811]">
       <div className="max-w-[1180px] mx-auto">
@@ -317,8 +313,6 @@ function SdksSection() {
 }
 
 function ContributorsSection() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative py-24 px-6 section-rule bg-[#050811]">
       <Particles className="absolute inset-0" quantity={100} color="#a855f7" />
@@ -403,8 +397,6 @@ function ContributorsSection() {
 }
 
 function ContributeSection() {
-  const reduce = useReducedMotion();
-
   const steps = [
     { icon: "fork_right", title: "Fork the Repo", description: "Clone the repository and set up your local development environment." },
     { icon: "code", title: "Pick an Issue", description: "Browse open issues and find one that matches your skills and interests." },

@@ -191,8 +191,7 @@ function ProductHero() {
   );
 }
 
-function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
-  const reduce = useReducedMotion();
+function FeatureCard({ feature }: { feature: Feature }) {
   return (
     <motion.div
       initial="hidden"
@@ -263,8 +262,8 @@ function FeaturesSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {features.map((feature, i) => (
-            <FeatureCard key={feature.title} feature={feature} index={i} />
+          {features.map((feature) => (
+            <FeatureCard key={feature.title} feature={feature} />
           ))}
         </div>
       </div>
@@ -273,8 +272,6 @@ function FeaturesSection() {
 }
 
 function ArchitectureSection() {
-  const reduce = useReducedMotion();
-
   const layers = [
     {
       title: "Data Ingestion",
@@ -366,8 +363,6 @@ function ArchitectureSection() {
 }
 
 function PricingSection() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative py-24 px-6 section-rule bg-[#050811]">
       <Particles className="absolute inset-0" quantity={60} color="#00e5ff" />
