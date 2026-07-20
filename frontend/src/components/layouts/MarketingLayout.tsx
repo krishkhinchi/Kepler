@@ -35,9 +35,6 @@ function useScrollToHash() {
   }, [pathname, hash]);
 }
 
-const footerLinkClass =
-  "font-body-ui text-[13px] text-[#8892A6] hover:text-[#E7EBF3] no-underline transition-ui";
-
 const navLinks = [
   { label: "Product", to: "/product" },
   { label: "Solutions", to: "/solutions" },
@@ -71,6 +68,7 @@ function MarketingNavBar() {
   const location = useLocation();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMenuOpen(false);
   }, [location.pathname, location.hash]);
 
@@ -192,9 +190,6 @@ function MarketingNavBar() {
   );
 }
 
-type FooterLink =
-  | { label: string; to: string; disabled?: false }
-  | { label: string; to?: undefined; disabled: true };
 
 function MarketingFooter() {
   return (

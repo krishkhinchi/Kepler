@@ -1,5 +1,4 @@
 import {
- ArrowRight,
   Mail,
   Heart,
 } from "lucide-react";

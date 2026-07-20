@@ -48,7 +48,6 @@ function keplerToLatLonAlt(obj: CatalogObject, timeOffsetSec: number = 0): { lat
   const epochDate = obj.epoch ? new Date(obj.epoch) : new Date();
   const now = new Date();
   const elapsedDays = (now.getTime() - epochDate.getTime()) / 86400000 + (timeOffsetSec / 86400);
-  const meanMotionRadPerSec = (obj.mean_motion * 2 * Math.PI) / 86400;
   const currentMeanAnomaly = ((obj.mean_anomaly + (elapsedDays * obj.mean_motion * 360)) % 360) * Math.PI / 180;
 
   
@@ -284,6 +283,7 @@ export const EarthTwin: React.FC = () => {
       });
 
       viewerRef.current = viewer;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setUseFallback(false);
 
       
@@ -323,7 +323,7 @@ export const EarthTwin: React.FC = () => {
               setHoveredObject(obj);
               setTooltipPos({ x: movement.endPosition.x + 15, y: movement.endPosition.y - 10 });
             }
-          } catch { }
+          } catch { /* ignore parse errors */ }
         } else {
           setHoveredObject(null);
         }
@@ -348,7 +348,7 @@ export const EarthTwin: React.FC = () => {
                 });
               }
             }
-          } catch { }
+          } catch { /* ignore parse errors */ }
         }
       }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
@@ -377,6 +377,7 @@ export const EarthTwin: React.FC = () => {
       console.warn('Cesium initialization failed, using fallback', e);
       setUseFallback(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); 
 
   return (

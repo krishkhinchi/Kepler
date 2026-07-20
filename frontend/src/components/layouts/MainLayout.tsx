@@ -33,6 +33,7 @@ export const MainLayout: React.FC = () => {
 
   useEffect(() => {
     // Close mobile sidebar on route change
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileSidebarOpen(false);
   }, [location.pathname]);
 
