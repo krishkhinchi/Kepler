@@ -41,6 +41,7 @@ An AI-Powered Autonomous Space Traffic Management Platform
 <a href="https://github.com/sumittiwari1302"><img src="https://github.com/sumittiwari1302.png" width="50px" style="border-radius:50%;margin:5px;" alt="sumittiwari1302" /></a>
 <a href="https://github.com/shahkhushi0307"><img src="https://github.com/shahkhushi0307.png" width="50px" style="border-radius:50%;margin:5px;" alt="shahkhushi0307" /></a>
 <a href="https://github.com/Ayush-0918"><img src="https://github.com/Ayush-0918.png" width="50px" style="border-radius:50%;margin:5px;" alt="Ayush-0918" /></a>
+<a href="https://github.com/Dependabot"><img src="https://github.com/Dependabot.png" width="50px" style="border-radius:50%;margin:5px;" alt="Dependabot" /></a>
 
 </div>
 <!-- CONTRIBUTORS_END -->
