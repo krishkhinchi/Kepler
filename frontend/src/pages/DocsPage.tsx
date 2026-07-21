@@ -263,7 +263,7 @@ export function DocsPage() {
                     id={cat.title.toLowerCase().replace(/\s+/g, "-").replace("&", "")}
                   >
                     <MagicCard
-                      gradientColor={cat.gradientFrom}
+                      gradientColor={`${cat.gradientFrom}50`}
                       className="group h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 backdrop-blur-xl"
                       fillClassName="bg-[#0C1220]/80"
                     >

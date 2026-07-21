@@ -208,7 +208,7 @@ function ApiSection() {
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
-          <MagicCard gradientColor="#00e5ff" className="rounded-2xl" fillClassName="bg-[#0A0F1A]">
+          <MagicCard gradientColor="#00e5ff50" className="rounded-2xl" fillClassName="bg-[#0A0F1A]">
             <div className="p-6 sm:p-8">
               <div className="flex items-center gap-2 mb-6">
                 <MaterialIcon name="terminal" className="text-[#00e5ff] text-lg" />
@@ -346,7 +346,7 @@ function ContributorsSection() {
               variants={fadeUp}
             >
               <MagicCard
-                gradientColor={person.color}
+                gradientColor={`${person.color}50`}
                 gradientSize={200}
                 className="h-full rounded-2xl border border-white/10"
                 fillClassName="bg-[#0A0F1A]"

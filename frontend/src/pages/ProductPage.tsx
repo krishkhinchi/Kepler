@@ -326,7 +326,7 @@ function ArchitectureSection() {
               variants={fadeUp}
             >
               <MagicCard
-                gradientColor={layer.color}
+                gradientColor={`${layer.color}50`}
                 gradientSize={250}
                 className="h-full rounded-2xl"
                 fillClassName="bg-[#0A0F1A]"
@@ -402,7 +402,7 @@ function PricingSection() {
                 glowOpacity={0.5}
                 className={`h-full rounded-2xl ${plan.highlight ? "border-[#00e5ff]/30" : "border-white/10"}`}
                 fillClassName={plan.highlight ? "bg-[#0A0F1A]" : "bg-[#0A0F1A]"}
-                gradientColor="#00e5ff"
+                gradientColor="#00e5ff40"
                 gradientSize={plan.highlight ? 250 : 200}
               >
                 <div className="p-6 sm:p-8">

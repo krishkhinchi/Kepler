@@ -295,7 +295,7 @@ export function SolutionsPage() {
                 variants={fadeUp}
               >
                 <MagicCard
-                  gradientColor={sol.gradientFrom}
+                  gradientColor={`${sol.gradientFrom}50`}
                   className="group h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-7 backdrop-blur-xl"
                   fillClassName="bg-[#0C1220]/80"
                 >
