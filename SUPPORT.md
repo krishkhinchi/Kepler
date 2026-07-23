@@ -6,7 +6,7 @@ If you need help, please use the appropriate channel below.
 
 ## Questions and General Help
 
-For questions about using the project, setup, configuration, or general development help, please open a **Question / Help** issue using our GitHub issue template.
+For questions about using the project, setup, configuration, or general development help, please open a **Question** issue using our GitHub issue template.
 
 Before opening a new issue, please search existing issues to see if your question has already been answered.
 
@@ -31,7 +31,7 @@ Please describe the problem or use case and explain your proposed solution.
 
 ## Documentation
 
-If you find an error or missing information in the documentation, please use the **Documentation Improvement** issue template.
+If you find an error or missing information in the documentation, please use the **Documentation** issue template.
 
 ## Security Issues
 

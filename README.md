@@ -363,7 +363,7 @@ npm test
 We welcome contributions from developers of all experience levels. Whether you're fixing bugs, improving documentation, or adding new features, your contributions are appreciated.
 
 ## Important: 
-Please read our our [Code of Conduct](CODE_OF_CONDUCT.md) befor contributing.
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
 
 ## Step 1: Sync Your Fork
 
