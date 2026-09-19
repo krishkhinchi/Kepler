@@ -32,6 +32,7 @@ import SignUp from './pages/SignUp';
 import { GlobalSearchModal } from '@/components/orbital/GlobalSearchModal';
 import { useOrbitalStore } from '@/store';
 import { useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 
 // Lives inside BrowserRouter/QueryClientProvider so it can reach navigate(),
 // the shared uiStore, and React Query's cache. Centralized here per issue #83
@@ -123,6 +124,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ButtonBackToTop />
+      <Analytics />
     </BrowserRouter>
   );
 }
